@@ -3,12 +3,12 @@ body {
   color: white;
 }
 #display {
-  height: 90vh;
   background-color: pink;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, 120px);
+  grid-auto-rows: 80px;
   grid-row-gap: 0.5em;
   grid-column-gap: 1em;
 }
@@ -17,6 +17,23 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.todo-item {
+  height: 80%;
+  background: grey;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-direction: column;
+}
+span {
+  margin: 5px;
+}
+#footer {
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  justify-content: space-around;
 }
 /* .wrapper {
   display: grid;
