@@ -1,6 +1,24 @@
-// today date IN form date
-document.querySelector('input[type="date"]').valueAsDate = new Date();
+//Show/Hide form
+const showFormButton = document.getElementById("addTDFormButton");
+const formContainer = document.getElementById("form-container");
+const container = document.querySelector(".container");
+const hideForm = document.getElementById("closeForm");
 
+hideForm.addEventListener("click", closeForm);
+
+showFormButton.addEventListener("click", (e) => {
+  document.querySelector('input[type="date"]').valueAsDate = new Date();
+  console.log("hey");
+  container.classList.add("blur-background");
+  formContainer.classList.remove("hidden");
+});
+
+function closeForm() {
+  container.classList.remove("blur-background");
+  formContainer.classList.add("hidden");
+}
+
+//add new todo to list
 let div = document.createElement("div");
 let span = document.createElement("span");
 let span2 = document.createElement("span");
@@ -43,7 +61,7 @@ function addTodo(todo) {
   button2.innerText = "Delete";
   element.append(button, button2);
   display.appendChild(element);
-  resetForm();
+  resetForm("addTodoForm");
 }
 
 function cleanTodoItem() {
@@ -53,8 +71,9 @@ function cleanTodoItem() {
   div.classList.add("todo-item");
 }
 
-function resetForm(selector) {
-  const form = document.getElementById("add-todo");
+function resetForm(idSelector) {
+  const form = document.getElementById(idSelector);
   form.reset();
 }
+
 export { addTodo };
