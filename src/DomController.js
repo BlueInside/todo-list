@@ -1,3 +1,6 @@
+// today date IN form date
+document.querySelector('input[type="date"]').valueAsDate = new Date();
+
 let div = document.createElement("div");
 let span = document.createElement("span");
 let span2 = document.createElement("span");
@@ -40,6 +43,7 @@ function addTodo(todo) {
   button2.innerText = "Delete";
   element.append(button, button2);
   display.appendChild(element);
+  resetForm();
 }
 
 function cleanTodoItem() {
@@ -49,4 +53,8 @@ function cleanTodoItem() {
   div.classList.add("todo-item");
 }
 
+function resetForm(selector) {
+  const form = document.getElementById("add-todo");
+  form.reset();
+}
 export { addTodo };
