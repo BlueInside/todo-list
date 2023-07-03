@@ -55,6 +55,24 @@ function addTodoToHTML(todo) {
   cleanTodoItem();
 
   editBtn.innerText = "Edit";
+  editBtn.addEventListener("click", () => {
+    // FINISHED HERE IMPLEMENT EDIT FUNCTIONALITY
+    // INPUTS SHOW NEED TO BE STYLED, AND ON SUBMIT CHANGED TODO OBJECT
+    // THEN RENDER OVER ARRAY WITH EDITED OBJECT
+    const editContainer = document.getElementById("editForm");
+    const titleInput = document.createElement("input");
+    const descInput = document.createElement("input");
+    const dueToInput = document.createElement("input");
+    dueToInput.type = "date";
+    const select = document.createElement("select");
+    let newOption = new Option("Irrelevant", "irrelevant");
+    select.add(newOption, undefined);
+    newOption = new Option("Important", "important");
+    select.add(newOption, undefined);
+    titleInput.value = todo.title;
+    descInput.value = todo.description;
+    editContainer.append(titleInput, descInput, dueToInput, select);
+  });
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
   deleteBtn.addEventListener("click", (event) => {
