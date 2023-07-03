@@ -8,13 +8,10 @@ hideForm.addEventListener("click", closeForm);
 
 showFormButton.addEventListener("click", (e) => {
   document.querySelector('input[type="date"]').valueAsDate = new Date();
-  console.log("hey");
-  container.classList.add("blur-background");
   formContainer.classList.remove("hidden");
 });
 
 function closeForm() {
-  container.classList.remove("blur-background");
   formContainer.classList.add("hidden");
 }
 
@@ -22,12 +19,12 @@ function closeForm() {
 let div = document.createElement("div");
 let span = document.createElement("span");
 let span2 = document.createElement("span");
+const display = document.getElementById("display");
 
-function addTodo(todo) {
-  const display = document.getElementById("display");
+function addTodoToHTML(todo) {
   const element = document.createElement("div");
-  const button = document.createElement("button");
-  const button2 = document.createElement("button");
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
 
   element.classList.add("todo");
   div.classList.add("todo-item");
@@ -57,12 +54,24 @@ function addTodo(todo) {
   element.appendChild(div);
   cleanTodoItem();
 
-  button.innerText = "Edit";
-  button2.innerText = "Delete";
-  element.append(button, button2);
+  editBtn.innerText = "Edit";
+  deleteBtn.innerText = "Delete";
+  deleteBtn.classList.add("deleteTodoBtn");
+  deleteBtn.addEventListener("click", (event) => {
+    todo.removeTodo();
+    renderTodo(todo.getList());
+  });
+  element.append(editBtn, deleteBtn);
+  element.dataset.id = todo.id;
   display.appendChild(element);
   resetForm("addTodoForm");
   closeForm();
+}
+function renderTodo(todoArray) {
+  display.textContent = "";
+  todoArray.forEach((todo) => {
+    addTodoToHTML(todo);
+  });
 }
 
 function cleanTodoItem() {
@@ -77,4 +86,4 @@ function resetForm(idSelector) {
   form.reset();
 }
 
-export { addTodo };
+export { addTodoToHTML, renderTodo };
