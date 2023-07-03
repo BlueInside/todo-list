@@ -2,7 +2,7 @@
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
-const hideForm = document.getElementById("closeForm");
+const hideForm = document.getElementById("closeFormBtn");
 
 hideForm.addEventListener("click", closeForm);
 
@@ -62,6 +62,7 @@ function addTodo(todo) {
   element.append(button, button2);
   display.appendChild(element);
   resetForm("addTodoForm");
+  closeForm();
 }
 
 function cleanTodoItem() {

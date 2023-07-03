@@ -10,5 +10,4 @@ form.addEventListener("submit", function (e) {
   const formDataAsArray = getFormData(new FormData(form));
   const todo = new Todo(...formDataAsArray);
   addTodo(todo);
-  closeForm();
 });
