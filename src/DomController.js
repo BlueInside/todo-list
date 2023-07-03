@@ -67,6 +67,7 @@ function addTodoToHTML(todo) {
   resetForm("addTodoForm");
   closeForm();
 }
+
 function renderTodo(todoArray) {
   display.textContent = "";
   todoArray.forEach((todo) => {
@@ -87,3 +88,4 @@ function resetForm(idSelector) {
 }
 
 export { addTodoToHTML, renderTodo };
+const btn = document.getElementById("addTDFormButton");

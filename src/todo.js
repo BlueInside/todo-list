@@ -13,6 +13,7 @@ function Todo(title, description, dueDate, priority) {
   function getList() {
     return todoList;
   }
+  function editTodo() {}
   function removeTodo() {
     todoList = todoList.filter((todo) => todo.id != this.id);
   }
@@ -23,5 +24,8 @@ function Todo(title, description, dueDate, priority) {
   );
 }
 
+function getTodoList() {
+  return todoList;
+}
 export default Todo;
-export {};
+export { getTodoList };
