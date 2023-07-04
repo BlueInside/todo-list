@@ -17,7 +17,17 @@ body {
   border-radius: 5px;
   width: 40vh;
 }
-
+.editFormDisplay {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.editFormButtons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
 fieldset {
   display: flex;
 

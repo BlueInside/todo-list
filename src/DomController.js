@@ -55,31 +55,12 @@ function addTodoToHTML(todo) {
   cleanTodoItem();
 
   editBtn.innerText = "Edit";
-  editBtn.addEventListener("click", () => {
-    // FINISHED HERE IMPLEMENT EDIT FUNCTIONALITY
-    // INPUTS SHOW NEED TO BE STYLED, AND ON SUBMIT CHANGED TODO OBJECT
-    // THEN RENDER OVER ARRAY WITH EDITED OBJECT
-    const container = document.getElementById("editFormContainer");
-    const editForm = document.querySelector(".editFormDisplay");
-    console.log(editForm);
-    const titleInput = document.createElement("input");
-    const descInput = document.createElement("input");
-    const dueToInput = document.createElement("input");
-    dueToInput.type = "date";
-    const select = document.createElement("select");
-    let newOption = new Option("Irrelevant", "irrelevant");
-    select.add(newOption, undefined);
-    newOption = new Option("Important", "important");
-    select.add(newOption, undefined);
-    titleInput.value = todo.title;
-    descInput.value = todo.description;
-    editForm.append(titleInput, descInput, dueToInput, select);
-    container.classList.remove("hidden");
-  });
+  editBtn.addEventListener("click", displayEditForm.bind(todo));
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
-  deleteBtn.addEventListener("click", (event) => {
+  deleteBtn.addEventListener("click", () => {
     todo.removeTodo();
+    //refresh todo's display
     renderTodo(todo.getList());
   });
   element.append(editBtn, deleteBtn);
@@ -107,6 +88,34 @@ function resetForm(idSelector) {
   const form = document.getElementById(idSelector);
   form.reset();
 }
+
+function displayEditForm() {
+  // FINISHED HERE IMPLEMENT EDIT FUNCTIONALITY
+  // INPUTS SHOW NEED TO BE STYLED, AND ON SUBMIT CHANGED TODO OBJECT
+  // THEN RENDER OVER ARRAY WITH EDITED OBJECT
+  const container = document.getElementById("editFormContainer");
+  const editForm = document.querySelector(".editFormDisplay");
+  container.classList.remove("hidden");
+  editForm.innerText = "";
+  const titleInput = document.createElement("input");
+  const descInput = document.createElement("input");
+  const dueToInput = document.createElement("input");
+  dueToInput.type = "date";
+  const select = document.createElement("select");
+  let newOption = new Option("Irrelevant", "irrelevant");
+  select.add(newOption, undefined);
+  newOption = new Option("Important", "important");
+  select.add(newOption, undefined);
+  titleInput.value = this.title;
+  descInput.value = this.description;
+  editForm.append(titleInput, descInput, dueToInput, select);
+}
+//Hide edit form on Button "cancel" click
+const hideEditFormBtn = document.getElementById("hideEditForm");
+hideEditFormBtn.addEventListener("click", () => {
+  const container = document.getElementById("editFormContainer");
+  container.classList.add("hidden");
+});
 
 export { addTodoToHTML, renderTodo };
 const btn = document.getElementById("addTDFormButton");
