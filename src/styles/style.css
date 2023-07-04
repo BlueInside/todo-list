@@ -6,7 +6,8 @@ body {
 .container {
   position: relative;
 }
-#form-container {
+#form-container,
+#editFormContainer {
   position: absolute;
   top: 40vh;
   left: 50vw;
@@ -16,6 +17,7 @@ body {
   border-radius: 5px;
   width: 40vh;
 }
+
 fieldset {
   display: flex;
 
