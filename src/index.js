@@ -5,10 +5,10 @@ import { renderTodo } from "./DomController";
 import { getFormData } from "./dataManipulation";
 import { format, compareAsc } from "date-fns";
 
-const form = document.querySelector("form");
+const addTodoForm = document.querySelector("form");
 
-form.addEventListener("submit", function (e) {
-  const formDataAsArray = getFormData(new FormData(form));
+addTodoForm.addEventListener("submit", function (e) {
+  const formDataAsArray = getFormData(new FormData(addTodoForm));
   const todo = new Todo(...formDataAsArray);
   console.log(todo);
   todo.addToList();

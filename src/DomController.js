@@ -3,7 +3,6 @@ const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
 const hideForm = document.getElementById("closeFormBtn");
-
 hideForm.addEventListener("click", closeForm);
 
 showFormButton.addEventListener("click", (e) => {
@@ -90,13 +89,10 @@ function resetForm(idSelector) {
 }
 
 function displayEditForm() {
-  // FINISHED HERE IMPLEMENT EDIT FUNCTIONALITY
-  // INPUTS SHOW NEED TO BE STYLED, AND ON SUBMIT CHANGED TODO OBJECT
-  // THEN RENDER OVER ARRAY WITH EDITED OBJECT
   const container = document.getElementById("editFormContainer");
-  const editForm = document.querySelector(".editFormDisplay");
+  const editFormDisplay = document.querySelector(".editFormDisplay");
   container.classList.remove("hidden");
-  editForm.innerText = "";
+  editFormDisplay.innerText = "";
   const titleInput = document.createElement("input");
   const descInput = document.createElement("input");
   const dueToInput = document.createElement("input");
@@ -108,13 +104,22 @@ function displayEditForm() {
   select.add(newOption, undefined);
   titleInput.value = this.title;
   descInput.value = this.description;
-  editForm.append(titleInput, descInput, dueToInput, select);
+  editFormDisplay.append(titleInput, descInput, dueToInput, select);
 }
+function saveEditForm() {}
 //Hide edit form on Button "cancel" click
 const hideEditFormBtn = document.getElementById("hideEditForm");
 hideEditFormBtn.addEventListener("click", () => {
   const container = document.getElementById("editFormContainer");
   container.classList.add("hidden");
+});
+// IMPLEMENT SAVE LOGIC IN EDIT FORM
+//Form console logs multiple this values depending on todo amount
+//I think its cause only one submit button that fires multiple
+// events try to create submit button dynamically in JS.
+const editForm = document.getElementById("editForm");
+editForm.addEventListener("submit", (e) => {
+  console.log(this);
 });
 
 export { addTodoToHTML, renderTodo };
