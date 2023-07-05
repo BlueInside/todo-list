@@ -1,4 +1,5 @@
 //Show/Hide form
+import { getFormData } from "./dataManipulation";
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
@@ -55,6 +56,9 @@ function addTodoToHTML(todo) {
 
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", displayEditForm.bind(todo));
+
+  createEditFormButtons();
+
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
   deleteBtn.addEventListener("click", () => {
@@ -106,21 +110,28 @@ function displayEditForm() {
   descInput.value = this.description;
   editFormDisplay.append(titleInput, descInput, dueToInput, select);
 }
-function saveEditForm() {}
-//Hide edit form on Button "cancel" click
-const hideEditFormBtn = document.getElementById("hideEditForm");
-hideEditFormBtn.addEventListener("click", () => {
+function createEditFormButtons() {
+  const container = document.querySelector(".editFormButtons");
+  container.innerText = "";
+  const saveEditFormBtn = document.createElement("input");
+  const cancelEditFormBtn = document.createElement("input");
+  cancelEditFormBtn.type = "button";
+  cancelEditFormBtn.id = "hideEditForm";
+  cancelEditFormBtn.value = "Cancel";
+  cancelEditFormBtn.addEventListener("click", hideEditForm);
+  saveEditFormBtn.type = "submit";
+  saveEditFormBtn.value = "Save";
+  container.append(saveEditFormBtn, cancelEditFormBtn);
+}
+function hideEditForm() {
   const container = document.getElementById("editFormContainer");
   container.classList.add("hidden");
-});
-// IMPLEMENT SAVE LOGIC IN EDIT FORM
+}
+
+// // IMPLEMENT SAVE LOGIC IN EDIT FORM
 //Form console logs multiple this values depending on todo amount
 //I think its cause only one submit button that fires multiple
 // events try to create submit button dynamically in JS.
-const editForm = document.getElementById("editForm");
-editForm.addEventListener("submit", (e) => {
-  console.log(this);
-});
 
 export { addTodoToHTML, renderTodo };
 const btn = document.getElementById("addTDFormButton");
