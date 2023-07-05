@@ -59,7 +59,12 @@ function addTodoToHTML(todo) {
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", createEditForm.bind(todo));
 
-  //   createEditFormButtons();
+  // FINISHED HERE!!!
+  // IMPLEMENT CHECKED TODO FUNCTION WHEN CLICKED
+  // ADD STYLING TO WHOLE ELEMENT .CHECKED
+  // probably will have to add additional property to todo
+  // elements checked and when pressed add checked styling to
+  // element and render again.
 
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
@@ -68,8 +73,10 @@ function addTodoToHTML(todo) {
     //refresh todo's display
     renderTodo(todo.getList());
   });
-
-  element.append(editBtn, deleteBtn);
+  const todoButtons = document.createElement("div");
+  todoButtons.classList.add("todoButtons");
+  todoButtons.append(editBtn, deleteBtn);
+  element.appendChild(todoButtons);
   element.dataset.id = todo.id;
   display.appendChild(element);
   resetForm("addTodoForm");
@@ -124,7 +131,7 @@ function createEditForm() {
     e.preventDefault();
     (this.title = `${titleInput.value ? titleInput.value : "No Title"}`),
       (this.description = `${
-        titleInput.value ? titleInput.value : "No Description"
+        descInput.value ? descInput.value : "No Description"
       }`),
       (this.dueDate = format(new Date(dueToInput.value), "PP")),
       (this.priority = select.value),
