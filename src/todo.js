@@ -7,13 +7,10 @@ function Todo(title, description, dueDate, priority) {
   const id = "id" + Math.random().toString(16).slice(2);
   function addToList() {
     todoList.push(this);
-    console.log(this);
-    console.log(todoList);
   }
   function getList() {
     return todoList;
   }
-  function editTodo() {}
   function removeTodo() {
     todoList = todoList.filter((todo) => todo.id != this.id);
   }

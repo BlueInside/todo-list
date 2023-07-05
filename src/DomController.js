@@ -1,5 +1,7 @@
 //Show/Hide form
 import { getFormData } from "./dataManipulation";
+import format from "date-fns/format";
+
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
@@ -55,9 +57,9 @@ function addTodoToHTML(todo) {
   cleanTodoItem();
 
   editBtn.innerText = "Edit";
-  editBtn.addEventListener("click", displayEditForm.bind(todo));
+  editBtn.addEventListener("click", createEditForm.bind(todo));
 
-  createEditFormButtons();
+  //   createEditFormButtons();
 
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
@@ -66,6 +68,7 @@ function addTodoToHTML(todo) {
     //refresh todo's display
     renderTodo(todo.getList());
   });
+
   element.append(editBtn, deleteBtn);
   element.dataset.id = todo.id;
   display.appendChild(element);
@@ -92,23 +95,42 @@ function resetForm(idSelector) {
   form.reset();
 }
 
-function displayEditForm() {
+function createEditForm() {
   const container = document.getElementById("editFormContainer");
   const editFormDisplay = document.querySelector(".editFormDisplay");
   container.classList.remove("hidden");
   editFormDisplay.innerText = "";
+
   const titleInput = document.createElement("input");
   const descInput = document.createElement("input");
   const dueToInput = document.createElement("input");
   dueToInput.type = "date";
+  dueToInput.classList.add(`${this.id}`);
   const select = document.createElement("select");
   let newOption = new Option("Irrelevant", "irrelevant");
   select.add(newOption, undefined);
   newOption = new Option("Important", "important");
   select.add(newOption, undefined);
+
   titleInput.value = this.title;
   descInput.value = this.description;
   editFormDisplay.append(titleInput, descInput, dueToInput, select);
+
+  const saveEditFormButton = createEditFormButtons();
+  const date = document.querySelector(`.${this.id}`);
+  date.valueAsDate = new Date();
+  //save update todo's array and render it again
+  saveEditFormButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    (this.title = `${titleInput.value ? titleInput.value : "No Title"}`),
+      (this.description = `${
+        titleInput.value ? titleInput.value : "No Description"
+      }`),
+      (this.dueDate = format(new Date(dueToInput.value), "PP")),
+      (this.priority = select.value),
+      renderTodo(this.getList()),
+      hideEditForm();
+  });
 }
 function createEditFormButtons() {
   const container = document.querySelector(".editFormButtons");
@@ -122,6 +144,7 @@ function createEditFormButtons() {
   saveEditFormBtn.type = "submit";
   saveEditFormBtn.value = "Save";
   container.append(saveEditFormBtn, cancelEditFormBtn);
+  return saveEditFormBtn;
 }
 function hideEditForm() {
   const container = document.getElementById("editFormContainer");
