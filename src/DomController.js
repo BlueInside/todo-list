@@ -55,6 +55,15 @@ function addTodoToHTML(todo) {
   div.append(span, span2);
   element.appendChild(div);
   cleanTodoItem();
+  //checked
+  element.classList.add("checked");
+  if (!todo.checked) element.classList.remove("checked");
+  const doneTodo = document.createElement("button");
+  doneTodo.innerText = "Done";
+  doneTodo.addEventListener("click", () => {
+    todo.checked = !todo.checked;
+    renderTodo(todo.getList());
+  });
 
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", createEditForm.bind(todo));
@@ -75,7 +84,7 @@ function addTodoToHTML(todo) {
   });
   const todoButtons = document.createElement("div");
   todoButtons.classList.add("todoButtons");
-  todoButtons.append(editBtn, deleteBtn);
+  todoButtons.append(editBtn, doneTodo, deleteBtn);
   element.appendChild(todoButtons);
   element.dataset.id = todo.id;
   display.appendChild(element);
@@ -123,11 +132,15 @@ function createEditForm() {
   descInput.value = this.description;
   editFormDisplay.append(titleInput, descInput, dueToInput, select);
 
-  const saveEditFormButton = createEditFormButtons();
+  // here
+  const saveEditFormBtn = createEditFormButtons();
+  //   doneEditFormBtn.addEventListener('click', ()=>{
+
+  //   })
   const date = document.querySelector(`.${this.id}`);
   date.valueAsDate = new Date();
   //save update todo's array and render it again
-  saveEditFormButton.addEventListener("click", (e) => {
+  saveEditFormBtn.addEventListener("click", (e) => {
     e.preventDefault();
     (this.title = `${titleInput.value ? titleInput.value : "No Title"}`),
       (this.description = `${
@@ -150,7 +163,10 @@ function createEditFormButtons() {
   cancelEditFormBtn.addEventListener("click", hideEditForm);
   saveEditFormBtn.type = "submit";
   saveEditFormBtn.value = "Save";
+  const doneEditFormBtn = document.createElement("button");
+  doneEditFormBtn.value = "Done";
   container.append(saveEditFormBtn, cancelEditFormBtn);
+  //   Here
   return saveEditFormBtn;
 }
 function hideEditForm() {

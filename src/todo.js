@@ -3,6 +3,7 @@ import format from "date-fns/format";
 let todoList = [];
 
 function Todo(title, description, dueDate, priority) {
+  const checked = false;
   dueDate = format(new Date(dueDate), "PP");
   const id = "id" + Math.random().toString(16).slice(2);
   function addToList() {
@@ -17,7 +18,7 @@ function Todo(title, description, dueDate, priority) {
   return Object.assign(
     {},
     { addToList, getList, removeTodo },
-    { title, description, dueDate, priority, id }
+    { title, description, dueDate, priority, id, checked }
   );
 }
 
