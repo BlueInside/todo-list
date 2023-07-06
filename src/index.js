@@ -14,18 +14,18 @@ addTodoForm.addEventListener("submit", function (e) {
   renderTodo(getTodoList());
 });
 
-const tabButtons = document.querySelectorAll(".tab-button");
-const todoContainer = document.getElementById("display");
+// const tabButtons = document.querySelectorAll(".tab-button");
+// const todoContainer = document.getElementById("display");
 
-tabButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    tabButtons.forEach((tab) => tab.classList.remove("active"));
-    button.classList.add("active");
+// tabButtons.forEach((button) => {
+//   button.addEventListener("click", () => {
+//     tabButtons.forEach((tab) => tab.classList.remove("active"));
+//     button.classList.add("active");
 
-    const selectedProject = button.dataset.project;
-    console.log(selectedProject);
-    console.log(project1, project2);
+//     const selectedProject = button.dataset.project;
+//     console.log(selectedProject);
+//     console.log(project1, project2);
 
-    // renderTodo(selectedProject)
-  });
-});
+//     // renderTodo(selectedProject)
+//   });
+// });

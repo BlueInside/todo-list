@@ -1,7 +1,7 @@
 //Show/Hide form
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
-
+import * as projects from "./data.js";
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
@@ -9,6 +9,7 @@ const hideForm = document.getElementById("closeFormBtn");
 hideForm.addEventListener("click", closeForm);
 
 showFormButton.addEventListener("click", (e) => {
+  console.log("hej");
   document.querySelector('input[type="date"]').valueAsDate = new Date();
   formContainer.classList.remove("hidden");
 });
@@ -53,7 +54,10 @@ function addTodoToHTML(todo) {
   span.innerText = `Priority:`;
   span2.innerText = `${todo.priority}`;
   div.append(span, span2);
-  element.appendChild(div);
+  element.appendChild(styleElement.firstChild);
+  //   {
+  //     styleElement.removeChild(styleElement.firstChild);
+  //   }
   cleanTodoItem();
   //checked
   element.classList.add("checked");
@@ -174,11 +178,14 @@ function hideEditForm() {
   container.classList.add("hidden");
 }
 
-function updateTodoContainer(selectedProject) {}
+// function updateTodoContainer(selectedProject) {
+//   const tasks = projects[`${selectedProject}`];
+//   renderTodo(tasks);
+// }
 // // IMPLEMENT SAVE LOGIC IN EDIT FORM
 //Form console logs multiple this values depending on todo amount
 //I think its cause only one submit button that fires multiple
 // events try to create submit button dynamically in JS.
 
-export { addTodoToHTML, renderTodo };
+export { addTodoToHTML, renderTodo, updateTodoContainer };
 const btn = document.getElementById("addTDFormButton");
