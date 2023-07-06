@@ -6,6 +6,9 @@ body {
 .container {
   position: relative;
 }
+.active {
+  background-color: #6d3887a8;
+}
 #form-container,
 #editFormContainer {
   position: absolute;
