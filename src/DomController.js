@@ -94,7 +94,6 @@ function addTodoToHTML(todo) {
   display.appendChild(element);
   resetForm("addTodoForm");
   closeForm();
-  console.log(todo.getList());
 }
 
 function renderTodo(todoArray) {
@@ -171,6 +170,7 @@ function createEditFormButtons() {
   const doneEditFormBtn = document.createElement("button");
   doneEditFormBtn.value = "Done";
   container.append(saveEditFormBtn, cancelEditFormBtn);
+  //   Here
   return saveEditFormBtn;
 }
 function hideEditForm() {

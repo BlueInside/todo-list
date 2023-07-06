@@ -2,12 +2,7 @@ body {
   background-color: #0e2954;
   color: white;
 }
-.active {
-  background-color: #1d7185;
-}
-.tab-button :hover {
-  text-decoration: underline;
-}
+
 .container {
   position: relative;
 }
@@ -116,3 +111,12 @@ span {
   align-content: stretch;
   justify-content: space-around;
 }
+/* .wrapper {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: 50px 1fr;
+}
+.header {
+  border: 1px solid red;
+  grid-column: 1/3;
+} */

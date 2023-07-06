@@ -4,7 +4,7 @@ import Todo, { addTodo, getTodoList } from "./todo";
 import { renderTodo } from "./DomController";
 import { getFormData } from "./dataManipulation";
 import { format, compareAsc } from "date-fns";
-import { project1, project2 } from "./data.js";
+
 const addTodoForm = document.querySelector("form");
 
 addTodoForm.addEventListener("submit", function (e) {
