@@ -90,6 +90,7 @@ function addTodoToHTML(todo) {
   display.appendChild(element);
   resetForm("addTodoForm");
   closeForm();
+  console.log(todo.getList());
 }
 
 function renderTodo(todoArray) {
@@ -166,7 +167,6 @@ function createEditFormButtons() {
   const doneEditFormBtn = document.createElement("button");
   doneEditFormBtn.value = "Done";
   container.append(saveEditFormBtn, cancelEditFormBtn);
-  //   Here
   return saveEditFormBtn;
 }
 function hideEditForm() {
@@ -174,6 +174,7 @@ function hideEditForm() {
   container.classList.add("hidden");
 }
 
+function updateTodoContainer(selectedProject) {}
 // // IMPLEMENT SAVE LOGIC IN EDIT FORM
 //Form console logs multiple this values depending on todo amount
 //I think its cause only one submit button that fires multiple
