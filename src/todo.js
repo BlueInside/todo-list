@@ -1,5 +1,6 @@
 import format from "date-fns/format";
 let todoList = [];
+
 function Todo(title, description, dueDate, priority) {
   const todo = {};
   const checked = false;
