@@ -1,7 +1,8 @@
 //Show/Hide form
+import { addToList, getList, removeTodo } from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
-import * as projects from "./data.js";
+// import * as projects from "./data.js";
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
@@ -9,15 +10,14 @@ const hideForm = document.getElementById("closeFormBtn");
 hideForm.addEventListener("click", closeForm);
 
 showFormButton.addEventListener("click", (e) => {
-  console.log("hej");
   document.querySelector('input[type="date"]').valueAsDate = new Date();
   formContainer.classList.remove("hidden");
 });
-
+//checked
 function closeForm() {
   formContainer.classList.add("hidden");
 }
-
+//checked
 //add new todo to list
 let div = document.createElement("div");
 let span = document.createElement("span");
@@ -25,18 +25,21 @@ let span2 = document.createElement("span");
 const display = document.getElementById("display");
 
 function addTodoToHTML(todo) {
+  //checked
   const element = document.createElement("div");
   const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
 
   element.classList.add("todo");
   div.classList.add("todo-item");
+  //checked
 
   //start with title
   span.innerText = `Title:`;
   span2.innerText = `${todo.title}`;
   div.append(span, span2);
   element.appendChild(div);
+  //checked
   cleanTodoItem();
   //description
   span.innerText = `Description:`;
@@ -54,10 +57,7 @@ function addTodoToHTML(todo) {
   span.innerText = `Priority:`;
   span2.innerText = `${todo.priority}`;
   div.append(span, span2);
-  element.appendChild(styleElement.firstChild);
-  //   {
-  //     styleElement.removeChild(styleElement.firstChild);
-  //   }
+  element.appendChild(div);
   cleanTodoItem();
   //checked
   element.classList.add("checked");
@@ -66,25 +66,19 @@ function addTodoToHTML(todo) {
   doneTodo.innerText = "Done";
   doneTodo.addEventListener("click", () => {
     todo.checked = !todo.checked;
-    renderTodo(todo.getList());
+    renderTodo(getList(todo.project));
   });
+  //checked
 
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", createEditForm.bind(todo));
 
-  // FINISHED HERE!!!
-  // IMPLEMENT CHECKED TODO FUNCTION WHEN CLICKED
-  // ADD STYLING TO WHOLE ELEMENT .CHECKED
-  // probably will have to add additional property to todo
-  // elements checked and when pressed add checked styling to
-  // element and render again.
-
   deleteBtn.innerText = "Delete";
   deleteBtn.classList.add("deleteTodoBtn");
   deleteBtn.addEventListener("click", () => {
-    todo.removeTodo();
+    removeTodo(todo);
     //refresh todo's display
-    renderTodo(todo.getList());
+    renderTodo(getList(todo.project));
   });
   const todoButtons = document.createElement("div");
   todoButtons.classList.add("todoButtons");
@@ -116,6 +110,8 @@ function resetForm(idSelector) {
 }
 
 function createEditForm() {
+  //checked
+
   const container = document.getElementById("editFormContainer");
   const editFormDisplay = document.querySelector(".editFormDisplay");
   container.classList.remove("hidden");
@@ -136,14 +132,13 @@ function createEditForm() {
   descInput.value = this.description;
   editFormDisplay.append(titleInput, descInput, dueToInput, select);
 
-  // here
   const saveEditFormBtn = createEditFormButtons();
-  //   doneEditFormBtn.addEventListener('click', ()=>{
 
-  //   })
   const date = document.querySelector(`.${this.id}`);
   date.valueAsDate = new Date();
   //save update todo's array and render it again
+  //checked
+
   saveEditFormBtn.addEventListener("click", (e) => {
     e.preventDefault();
     (this.title = `${titleInput.value ? titleInput.value : "No Title"}`),
@@ -152,7 +147,7 @@ function createEditForm() {
       }`),
       (this.dueDate = format(new Date(dueToInput.value), "PP")),
       (this.priority = select.value),
-      renderTodo(this.getList()),
+      renderTodo(getList(this.project)),
       hideEditForm();
   });
 }
@@ -170,7 +165,8 @@ function createEditFormButtons() {
   const doneEditFormBtn = document.createElement("button");
   doneEditFormBtn.value = "Done";
   container.append(saveEditFormBtn, cancelEditFormBtn);
-  //   Here
+  //checked
+
   return saveEditFormBtn;
 }
 function hideEditForm() {
@@ -178,14 +174,5 @@ function hideEditForm() {
   container.classList.add("hidden");
 }
 
-// function updateTodoContainer(selectedProject) {
-//   const tasks = projects[`${selectedProject}`];
-//   renderTodo(tasks);
-// }
-// // IMPLEMENT SAVE LOGIC IN EDIT FORM
-//Form console logs multiple this values depending on todo amount
-//I think its cause only one submit button that fires multiple
-// events try to create submit button dynamically in JS.
-
-export { addTodoToHTML, renderTodo, updateTodoContainer };
+export { addTodoToHTML, renderTodo };
 const btn = document.getElementById("addTDFormButton");

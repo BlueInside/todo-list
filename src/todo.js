@@ -1,30 +1,39 @@
 import format from "date-fns/format";
-let todoList = [];
+const projects = {};
+function Todo(project, title, description, dueDate, priority) {
+  const todo = {
+    project,
+    title,
+    description,
+    dueDate: format(new Date(dueDate), "PP"),
+    priority,
+    checked: false,
+    id: "id" + Math.random().toString(16).slice(2),
+  };
 
-function Todo(title, description, dueDate, priority) {
-  const todo = {};
-  const checked = false;
-  dueDate = format(new Date(dueDate), "PP");
-  const id = "id" + Math.random().toString(16).slice(2);
-  function addToList() {
-    todoList.push(this);
+  addToList(todo);
+  return todo;
+}
+function addToList(todo) {
+  const { project } = todo;
+  if (!(project in projects)) {
+    projects[project] = [];
   }
-
-  function getList() {
-    return todoList;
-  }
-  function removeTodo() {
-    todoList = todoList.filter((todo) => todo.id != this.id);
-  }
-  return Object.assign(
-    {},
-    { addToList, getList, removeTodo },
-    { title, description, dueDate, priority, id, checked }
-  );
+  projects[project].push(todo);
 }
 
-function getTodoList() {
-  return todoList;
+function getList(project) {
+  if (!(project in projects)) {
+    projects[project] = [];
+  }
+  return projects[project];
 }
+function removeTodo(todo) {
+  const projectArray = projects[todo.project];
+  if (projectArray) {
+    projects[todo.project] = projectArray.filter((t) => t.id !== todo.id);
+  }
+}
+
 export default Todo;
-export { getTodoList };
+export { addToList, getList, removeTodo };
