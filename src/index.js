@@ -11,10 +11,14 @@ addTodoForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formDataAsArray = getFormData(new FormData(addTodoForm));
   const project = document.querySelector(".active").dataset.project;
-  const todo = new Todo(project, ...formDataAsArray);
-  console.log(todo);
-  console.log(getList(todo));
-  renderTodo(getList(todo.project));
+  if (!project) {
+    console.log("no project selected");
+  } else {
+    const todo = new Todo(project, ...formDataAsArray);
+    console.log(todo);
+    console.log(getList(todo));
+    renderTodo(getList(todo.project));
+  }
 });
 
 updateProjectButtons();

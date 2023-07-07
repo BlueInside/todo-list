@@ -15,13 +15,18 @@ createProjectForm.addEventListener("submit", (e) => {
 });
 //Delete current project
 const deleteProject = document.getElementById("deleteCurrentProject");
-deleteProject.addEventListener("click", () => {
-  const elementToDelete = document.querySelector(".active");
-  const project = elementToDelete.dataset.project;
-  removeProject(project);
-  elementToDelete.remove();
-  updateTodoContainer(project);
-});
+deleteProject.addEventListener("click", popup);
+
+function popup() {
+  const popupContainer = document.querySelector(".popup-container");
+  const saveButton = document.getElementById("saveButton");
+  const cancelButton = document.getElementById("cancelButton", closePopup);
+  popupContainer.classList.remove("hidden");
+
+  saveButton.addEventListener("click", saveProjectChanges);
+  cancelButton.addEventListener("click", closePopup);
+}
+
 //New Project Form And Buttons
 const newProjectForm = document.getElementById("createProjectContainer");
 
@@ -35,6 +40,7 @@ closeNewProjectBtn.addEventListener("click", closeProjectForm);
 
 const saveNewProjectButton = document.getElementById("newProjectBtn");
 saveNewProjectButton.addEventListener("click", () => {
+  const input = document.getElementById("project");
   const value = document.getElementById("project").value;
   const newProjectButton = document.createElement("Button");
   newProjectButton.innerText = `${value}`;
@@ -43,6 +49,7 @@ saveNewProjectButton.addEventListener("click", () => {
   projectsContainer.appendChild(newProjectButton);
   updateProjectButtons();
   closeProjectForm();
+  input.value = "";
 });
 
 showFormButton.addEventListener("click", (e) => {
@@ -226,6 +233,36 @@ function updateTodoContainer(project) {
   const todos = getList(project);
   renderTodo(todos);
 }
+function displayWarningPopup(message) {
+  const warningContainer = document.querySelector(".popup-warning-container");
+  warningContainer.classList.remove("hidden");
+  const displayMessage = document.getElementById("popupWarningMessage");
+  displayMessage.innerText = message;
+  const confirmButton = document.getElementById("confirmWarningButton");
+  confirmButton.addEventListener("click", hideWarningPopup);
+}
+function hideWarningPopup() {
+  const warningContainer = document.querySelector(".popup-warning-container");
+  warningContainer.classList.add("hidden");
+}
+function saveProjectChanges() {
+  const elementToDelete = document.querySelector(".active");
+  const project = elementToDelete.dataset.project;
+  if (project !== "default") {
+    removeProject(project);
+    elementToDelete.remove();
+    updateTodoContainer(project);
+    closePopup();
+  } else {
+    closePopup();
+    displayWarningPopup("Can't delete 'default' project");
+  }
+}
 
-export { addTodoToHTML, renderTodo, updateProjectButtons };
+function closePopup() {
+  const popupContainer = document.querySelector(".popup-container");
+  popupContainer.classList.add("hidden");
+}
+
+export { addTodoToHTML, renderTodo, updateProjectButtons, displayWarningPopup };
 const btn = document.getElementById("addTDFormButton");
