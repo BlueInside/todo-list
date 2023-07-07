@@ -28,6 +28,12 @@ function getList(project) {
   }
   return projects[project];
 }
+//Added to remove project
+function removeProject(project) {
+  if (project in projects) {
+    delete projects[project];
+  }
+}
 function removeTodo(todo) {
   const projectArray = projects[todo.project];
   if (projectArray) {
@@ -36,4 +42,4 @@ function removeTodo(todo) {
 }
 
 export default Todo;
-export { addToList, getList, removeTodo };
+export { addToList, getList, removeTodo, removeProject };

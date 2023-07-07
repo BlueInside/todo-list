@@ -1,5 +1,5 @@
 //Show/Hide form
-import { addToList, getList, removeTodo } from "./todo.js";
+import { addToList, getList, removeTodo, removeProject } from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
 
@@ -13,7 +13,15 @@ const createProjectForm = document.getElementById("createProjectForm");
 createProjectForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
-
+//Delete current project
+const deleteProject = document.getElementById("deleteCurrentProject");
+deleteProject.addEventListener("click", () => {
+  const elementToDelete = document.querySelector(".active");
+  const project = elementToDelete.dataset.project;
+  removeProject(project);
+  elementToDelete.remove();
+  updateTodoContainer(project);
+});
 //New Project Form And Buttons
 const newProjectForm = document.getElementById("createProjectContainer");
 
