@@ -20,6 +20,26 @@ body {
   border-radius: 5px;
   width: 40vh;
 }
+#createProjectContainer {
+  position: absolute;
+  top: 40vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+  width: 30vh;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#newProjectBtn {
+  margin-right: 10px;
+}
+.createNewProject {
+  display: flex;
+
+  flex-direction: column;
+}
 .editFormDisplay {
   display: flex;
   flex-direction: column;
@@ -33,7 +53,6 @@ body {
 }
 fieldset {
   display: flex;
-
   align-content: stretch;
   flex-direction: column;
 }

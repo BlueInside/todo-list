@@ -2,22 +2,50 @@
 import { addToList, getList, removeTodo } from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
-// import * as projects from "./data.js";
+
 const showFormButton = document.getElementById("addTDFormButton");
 const formContainer = document.getElementById("form-container");
 const container = document.querySelector(".container");
 const hideForm = document.getElementById("closeFormBtn");
 hideForm.addEventListener("click", closeForm);
+const projectsContainer = document.querySelector(".project-tabs");
+const createProjectForm = document.getElementById("createProjectForm");
+createProjectForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+//New Project Form And Buttons
+const newProjectForm = document.getElementById("createProjectContainer");
+
+const newProjectBtn = document.getElementById("addNewProject");
+newProjectBtn.addEventListener("click", () => {
+  newProjectForm.classList.remove("hidden");
+});
+
+const closeNewProjectBtn = document.querySelector(".closeProjectForm");
+closeNewProjectBtn.addEventListener("click", closeProjectForm);
+
+const saveNewProjectButton = document.getElementById("newProjectBtn");
+saveNewProjectButton.addEventListener("click", () => {
+  const value = document.getElementById("project").value;
+  const newProjectButton = document.createElement("Button");
+  newProjectButton.innerText = `${value}`;
+  newProjectButton.classList.add("tab-button");
+  newProjectButton.dataset.project = value;
+  projectsContainer.appendChild(newProjectButton);
+  updateProjectButtons();
+  closeProjectForm();
+});
 
 showFormButton.addEventListener("click", (e) => {
   document.querySelector('input[type="date"]').valueAsDate = new Date();
   formContainer.classList.remove("hidden");
 });
-//checked
+
 function closeForm() {
   formContainer.classList.add("hidden");
 }
-//checked
+
 //add new todo to list
 let div = document.createElement("div");
 let span = document.createElement("span");
@@ -25,21 +53,19 @@ let span2 = document.createElement("span");
 const display = document.getElementById("display");
 
 function addTodoToHTML(todo) {
-  //checked
   const element = document.createElement("div");
   const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
 
   element.classList.add("todo");
   div.classList.add("todo-item");
-  //checked
 
   //start with title
   span.innerText = `Title:`;
   span2.innerText = `${todo.title}`;
   div.append(span, span2);
   element.appendChild(div);
-  //checked
+
   cleanTodoItem();
   //description
   span.innerText = `Description:`;
@@ -59,7 +85,7 @@ function addTodoToHTML(todo) {
   div.append(span, span2);
   element.appendChild(div);
   cleanTodoItem();
-  //checked
+
   element.classList.add("checked");
   if (!todo.checked) element.classList.remove("checked");
   const doneTodo = document.createElement("button");
@@ -68,7 +94,6 @@ function addTodoToHTML(todo) {
     todo.checked = !todo.checked;
     renderTodo(getList(todo.project));
   });
-  //checked
 
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", createEditForm.bind(todo));
@@ -80,6 +105,7 @@ function addTodoToHTML(todo) {
     //refresh todo's display
     renderTodo(getList(todo.project));
   });
+
   const todoButtons = document.createElement("div");
   todoButtons.classList.add("todoButtons");
   todoButtons.append(editBtn, doneTodo, deleteBtn);
@@ -110,8 +136,6 @@ function resetForm(idSelector) {
 }
 
 function createEditForm() {
-  //checked
-
   const container = document.getElementById("editFormContainer");
   const editFormDisplay = document.querySelector(".editFormDisplay");
   container.classList.remove("hidden");
@@ -137,7 +161,6 @@ function createEditForm() {
   const date = document.querySelector(`.${this.id}`);
   date.valueAsDate = new Date();
   //save update todo's array and render it again
-  //checked
 
   saveEditFormBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -165,7 +188,6 @@ function createEditFormButtons() {
   const doneEditFormBtn = document.createElement("button");
   doneEditFormBtn.value = "Done";
   container.append(saveEditFormBtn, cancelEditFormBtn);
-  //checked
 
   return saveEditFormBtn;
 }
@@ -173,6 +195,29 @@ function hideEditForm() {
   const container = document.getElementById("editFormContainer");
   container.classList.add("hidden");
 }
+function closeProjectForm() {
+  newProjectForm.classList.add("hidden");
+}
 
-export { addTodoToHTML, renderTodo };
+function updateProjectButtons() {
+  const tabButtons = document.querySelectorAll(".tab-button");
+  tabButtons.forEach((button) =>
+    button.removeEventListener("click", handleTabButtonClick)
+  );
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", handleTabButtonClick);
+  });
+  function handleTabButtonClick() {
+    tabButtons.forEach((tab) => tab.classList.remove("active"));
+    this.classList.add("active");
+    const selectedProject = this.dataset.project;
+    updateTodoContainer(selectedProject);
+  }
+}
+function updateTodoContainer(project) {
+  const todos = getList(project);
+  renderTodo(todos);
+}
+
+export { addTodoToHTML, renderTodo, updateProjectButtons };
 const btn = document.getElementById("addTDFormButton");
