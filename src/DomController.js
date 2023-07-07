@@ -18,13 +18,18 @@ const deleteProject = document.getElementById("deleteCurrentProject");
 deleteProject.addEventListener("click", popup);
 
 function popup() {
+  const project = document.querySelector(".active");
+
   const popupContainer = document.querySelector(".popup-container");
   const saveButton = document.getElementById("saveButton");
-  const cancelButton = document.getElementById("cancelButton", closePopup);
-  popupContainer.classList.remove("hidden");
-
-  saveButton.addEventListener("click", saveProjectChanges);
-  cancelButton.addEventListener("click", closePopup);
+  const cancelButton = document.getElementById("cancelButton");
+  if (project) {
+    popupContainer.classList.remove("hidden");
+    saveButton.addEventListener("click", saveProjectChanges);
+    cancelButton.addEventListener("click", closePopup);
+  } else {
+    displayWarningPopup("Choose project first");
+  }
 }
 
 //New Project Form And Buttons
@@ -42,19 +47,29 @@ const saveNewProjectButton = document.getElementById("newProjectBtn");
 saveNewProjectButton.addEventListener("click", () => {
   const input = document.getElementById("project");
   const value = document.getElementById("project").value;
-  const newProjectButton = document.createElement("Button");
-  newProjectButton.innerText = `${value}`;
-  newProjectButton.classList.add("tab-button");
-  newProjectButton.dataset.project = value;
-  projectsContainer.appendChild(newProjectButton);
-  updateProjectButtons();
-  closeProjectForm();
+  if (value === "80085") displayWarningPopup(":) see what you did there");
+  if (value !== "") {
+    const newProjectButton = document.createElement("Button");
+    newProjectButton.innerText = `${value}`;
+    newProjectButton.classList.add("tab-button");
+    newProjectButton.dataset.project = value;
+    projectsContainer.appendChild(newProjectButton);
+    updateProjectButtons();
+    closeProjectForm();
+  } else {
+    displayWarningPopup("Project name can't be empty");
+  }
   input.value = "";
 });
 
 showFormButton.addEventListener("click", (e) => {
-  document.querySelector('input[type="date"]').valueAsDate = new Date();
-  formContainer.classList.remove("hidden");
+  const project = document.querySelector(".active");
+  if (!project) {
+    displayWarningPopup("Choose project first");
+  } else {
+    document.querySelector('input[type="date"]').valueAsDate = new Date();
+    formContainer.classList.remove("hidden");
+  }
 });
 
 function closeForm() {
