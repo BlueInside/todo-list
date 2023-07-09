@@ -1,5 +1,8 @@
 import format from "date-fns/format";
-const projects = {};
+// if project is in localStorage load it form there
+const projects = localStorage.getItem("projects")
+  ? JSON.parse(localStorage("projects"))
+  : {};
 function Todo(project, title, description, dueDate, priority) {
   const todo = {
     project,
