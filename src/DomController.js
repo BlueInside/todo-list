@@ -1,5 +1,11 @@
 //Show/Hide form
-import { addToList, getList, removeTodo, removeProject } from "./todo.js";
+import {
+  addToList,
+  getList,
+  removeTodo,
+  removeProject,
+  checked,
+} from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
 
@@ -121,7 +127,7 @@ function addTodoToHTML(todo) {
   const doneTodo = document.createElement("button");
   doneTodo.innerText = "Done";
   doneTodo.addEventListener("click", () => {
-    todo.checked = !todo.checked;
+    checked(todo);
     renderTodo(getList(todo.project));
   });
 

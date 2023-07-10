@@ -10,7 +10,6 @@ const addTodoForm = document.querySelector("form");
 addTodoForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formDataAsArray = getFormData(new FormData(addTodoForm));
-
   const project = document.querySelector(".active").dataset.project;
   const todo = new Todo(project, ...formDataAsArray);
   console.log(todo);
