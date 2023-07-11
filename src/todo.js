@@ -26,8 +26,10 @@ function addToList(todo) {
   const { project } = todo;
   if (!(project in projects)) {
     projects[project] = [];
+    updateToLocalStorage();
   }
   projects[project].push(todo);
+  updateToLocalStorage();
 }
 
 function getList(project) {
@@ -35,12 +37,14 @@ function getList(project) {
     return [];
   }
   return projects[project];
+  updateToLocalStorage();
 }
 //Added to remove project
 function removeProject(project) {
   if (project in projects) {
     delete projects[project];
   }
+  updateToLocalStorage();
 }
 function getProjects() {
   return projects;
@@ -50,9 +54,14 @@ function removeTodo(todo) {
   if (projectArray) {
     projects[todo.project] = projectArray.filter((t) => t.id !== todo.id);
   }
+  updateToLocalStorage();
 }
 function addProject(project) {
   projects[project] = [];
+  updateToLocalStorage();
+}
+function updateToLocalStorage() {
+  localStorage.setItem("projects", JSON.stringify(projects));
 }
 export default Todo;
 export {

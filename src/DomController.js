@@ -37,6 +37,8 @@ function popup() {
     displayWarningPopup("Choose project first");
   }
 }
+//create projects based on project names in localStorage
+
 //New Project Form And Buttons
 const newProjectForm = document.getElementById("createProjectContainer");
 
