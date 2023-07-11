@@ -36,8 +36,8 @@ function getList(project) {
   if (!(project in projects)) {
     return [];
   }
-  return projects[project];
   updateToLocalStorage();
+  return projects[project];
 }
 //Added to remove project
 function removeProject(project) {

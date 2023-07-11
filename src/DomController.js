@@ -282,7 +282,7 @@ function hideWarningPopup() {
 function saveProjectChanges() {
   const elementToDelete = document.querySelector(".active");
   const project = elementToDelete.dataset.project;
-  if (project !== "default") {
+  if (project !== "Default") {
     removeProject(project);
     elementToDelete.remove();
     updateTodoContainer(project);
