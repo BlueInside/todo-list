@@ -1,0 +1,140 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+  </head>
+  <body>
+   <div class="wrapper">
+    <div class="funcional-buttons">
+      
+    </div>
+
+    <div class="dropdown">
+      <button class="round-button show" id="dropdownButton" >+</button>
+        <div class="dropdown-content" id="dropdownContent">
+        <button id="addTDFormButton">add todo</button>
+        <button id="addNewProject">new project</button>
+        <button id="deleteCurrentProject">Delete project</button>
+      </div>
+    </div>
+    <div class="mainContent">
+      <h2>PROJECTS:</h2>
+    <div class="project-tabs">
+    
+      </div>
+    </div>
+
+    <div class="popup-warning-container hidden">
+      <div class="popup-warning">
+        <h2>Sorry but...</h2>
+        <p id="popupWarningMessage"></p>
+        <!-- Text will go here -->
+        <div class="popup-buttons">
+          <button id="confirmWarningButton">Confirm</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="popup-container hidden">
+      <div class="popup">
+        <h2>Save Changes?</h2>
+        <p>Are you sure you want to delete current project?</p>
+        <div class="popup-buttons">
+          <button id="saveButton">Save</button>
+          <button id="cancelButton">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="form-container" class="hidden">
+        <form id="addTodoForm" action="#" method="GET">
+          <fieldset>
+            <legend>Todo Details</legend>
+            <div>
+              <label for="title">Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Homework"
+                required
+              />
+            </div>
+            <label for="description">Description:</label>
+            <textarea
+              name="description"
+              id="description"
+              cols="25"
+              rows="5"
+              required
+              placeholder="Don't forget to do math homework..."
+            ></textarea>
+          </fieldset>
+          <fieldset>
+            <legend>Date and importance</legend>
+            <label for="date">Due to:</label>
+            <input type="date" id="date" name="dueDate" required />
+            <label for="prior">Importance:</label>
+            <select name="Priority" id="prior">
+              <option value="irrelevant">Irrelevant</option>
+              <option value="important">Important</option>
+            </select>
+
+            <div class="todoFormButtons">
+              <button type="submit" id="addTodo">Add</button>
+              <input type="button" id="closeFormBtn" value="Close" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="editFormContainer" class="hidden">
+        <form id="editForm" action="#" method="GET">
+          <fieldset>
+            <legend>Edit</legend>
+            <div class="editFormDisplay"></div>
+            <div class="editFormButtons">
+              <input id="hideEditForm" type="button" value="Cancel" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div id="createProjectContainer" class="hidden"> 
+        <form action="#" method="get" id="createProjectForm">
+          <fieldset>
+            <legend>New Project</legend>
+            <div class="createNewProject">
+              <div class="createProjectDisplay">
+                <label for="project">Project Name:</label>
+                <input  type="text" id="project">
+              </div>
+              <div class="createProjectButtons">
+                <button type="button" id="newProjectBtn">Submit</button>
+                <button class="closeProjectForm">Close</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="container-main-text">
+        <h1>Welcome to Todo-List!</h1>
+        <p>Stay organized and manage your tasks effectively with our simple and intuitive todo app. <br> Whether you're juggling work, personal projects, or daily chores, our app helps you stay on top of everything.</p>
+        <p>Key Features:</p>
+        <ul>
+          <li>Create and manage multiple projects to organize your tasks</li>
+          <li>Add, edit, and delete todos with ease</li>
+          <li>Set due dates and prioritize tasks based on importance</li>
+          <li>Mark todos as completed and track your progress</li>
+          <li>Stay focused and productive with a clean and clutter-free interface</li>
+        </ul>
+      </div>
+      <div id="display"></div>
+    </div>
+    </div>
+  </div> 
+
+    <script src="main.js"></script>
+  </body>
+</html>
