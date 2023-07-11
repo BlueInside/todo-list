@@ -4,11 +4,6 @@ const projects = localStorage.getItem("projects")
   ? JSON.parse(localStorage.getItem("projects"))
   : { Default: [] };
 
-// const checkProjectsBtn = document.getElementById("checkProjects");
-// checkProjectsBtn.addEventListener("click", () => {
-//   console.log(getProjects());
-// });
-console.log();
 function Todo(project, title, description, dueDate, priority) {
   const todo = {
     project,
