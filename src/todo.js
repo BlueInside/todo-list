@@ -2,7 +2,7 @@ import format from "date-fns/format";
 // if project is in localStorage load it form there
 const projects = localStorage.getItem("projects")
   ? JSON.parse(localStorage.getItem("projects"))
-  : {};
+  : { Default: [] };
 
 const checkProjectsBtn = document.getElementById("checkProjects");
 checkProjectsBtn.addEventListener("click", () => {
