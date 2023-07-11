@@ -5,6 +5,9 @@ import {
   removeTodo,
   removeProject,
   addProject,
+  getProjects,
+  updateToLocalStorage,
+  done,
 } from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
@@ -38,7 +41,15 @@ function popup() {
   }
 }
 //create projects based on project names in localStorage
-
+const projects = Object.keys(getProjects());
+projects.forEach((project, index) => {
+  const newProjectButton = document.createElement("Button");
+  newProjectButton.innerText = `${project}`;
+  newProjectButton.classList.add("tab-button");
+  newProjectButton.dataset.project = project;
+  projectsContainer.appendChild(newProjectButton);
+  updateProjectButtons();
+});
 //New Project Form And Buttons
 const newProjectForm = document.getElementById("createProjectContainer");
 
@@ -129,7 +140,7 @@ function addTodoToHTML(todo) {
   const doneTodo = document.createElement("button");
   doneTodo.innerText = "Done";
   doneTodo.addEventListener("click", () => {
-    todo.checked = !todo.checked;
+    done(todo);
     renderTodo(getList(todo.project));
   });
 

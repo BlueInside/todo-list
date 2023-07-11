@@ -63,6 +63,10 @@ function addProject(project) {
 function updateToLocalStorage() {
   localStorage.setItem("projects", JSON.stringify(projects));
 }
+function done(todo) {
+  todo.checked = !todo.checked;
+  updateToLocalStorage();
+}
 export default Todo;
 export {
   addToList,
@@ -71,4 +75,6 @@ export {
   removeProject,
   getProjects,
   addProject,
+  updateToLocalStorage,
+  done,
 };
