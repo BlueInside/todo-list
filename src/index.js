@@ -1,6 +1,6 @@
 import "normalize.css";
 import "./styles/style.css";
-import Todo, { getList } from "./todo";
+import Todo, { getList, getProjects } from "./todo";
 import { renderTodo, updateProjectButtons, war } from "./DomController";
 import { getFormData } from "./dataManipulation";
 

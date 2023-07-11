@@ -143,6 +143,7 @@ select {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-radius: 20px;
 }
 .todo-item {
   height: 80%;

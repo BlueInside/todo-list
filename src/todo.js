@@ -8,6 +8,7 @@ const projects = localStorage.getItem("projects")
 // checkProjectsBtn.addEventListener("click", () => {
 //   console.log(getProjects());
 // });
+console.log();
 function Todo(project, title, description, dueDate, priority) {
   const todo = {
     project,

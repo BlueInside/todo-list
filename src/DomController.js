@@ -66,7 +66,12 @@ const saveNewProjectButton = document.getElementById("newProjectBtn");
 saveNewProjectButton.addEventListener("click", () => {
   const input = document.getElementById("project");
   const value = document.getElementById("project").value;
+  const projects = Object.keys(getProjects());
   if (value === "80085") displayWarningPopup(":) see what you did there");
+  if (projects.includes(value)) {
+    displayWarningPopup("Project with that name already exist");
+    return;
+  }
   if (value !== "") {
     const newProjectButton = document.createElement("Button");
     newProjectButton.innerText = `${value}`;
