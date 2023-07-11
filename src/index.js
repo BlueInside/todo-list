@@ -18,4 +18,5 @@ addTodoForm.addEventListener("submit", function (e) {
   renderTodo(getList(todo.project));
 });
 
+
 updateProjectButtons();

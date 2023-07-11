@@ -18,6 +18,7 @@ const container = document.querySelector(".container");
 const hideForm = document.getElementById("closeFormBtn");
 hideForm.addEventListener("click", closeForm);
 const projectsContainer = document.querySelector(".project-tabs");
+const containerMainText = document.querySelector(".container-main-text");
 const createProjectForm = document.getElementById("createProjectForm");
 createProjectForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -167,6 +168,7 @@ function addTodoToHTML(todo) {
 
 function renderTodo(todoArray) {
   display.textContent = "";
+  containerMainText.remove();
   todoArray.forEach((todo) => {
     addTodoToHTML(todo);
   });
@@ -297,6 +299,23 @@ function closePopup() {
   const popupContainer = document.querySelector(".popup-container");
   popupContainer.classList.add("hidden");
 }
+
+const dropdownButton = document.getElementById("dropdownButton");
+const dropdownContent = document.getElementById("dropdownContent");
+
+dropdownButton.addEventListener("click", function () {
+  dropdownContent.classList.toggle("show");
+  // dropdownContent.classList.add("animate");
+  dropdownButton.classList.add("hidden");
+});
+
+// Close the dropdown menu if the user clicks outside of it
+window.addEventListener("click", function (event) {
+  if (!event.target.matches(".round-button")) {
+    dropdownContent.classList.remove("show");
+    dropdownButton.classList.remove("hidden");
+  }
+});
 
 export { addTodoToHTML, renderTodo, updateProjectButtons, displayWarningPopup };
 const btn = document.getElementById("addTDFormButton");
