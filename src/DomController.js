@@ -37,7 +37,6 @@ function popup() {
     displayWarningPopup("Choose project first");
   }
 }
-
 //New Project Form And Buttons
 const newProjectForm = document.getElementById("createProjectContainer");
 
