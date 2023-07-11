@@ -1,6 +1,6 @@
 import "normalize.css";
 import "./styles/style.css";
-import Todo, { addToList, getList, removeTodo } from "./todo";
+import Todo, { addToList, getList, removeTodo, getProjects } from "./todo";
 import { renderTodo, updateProjectButtons, war } from "./DomController";
 import { getFormData } from "./dataManipulation";
 import { format, compareAsc } from "date-fns";
@@ -14,7 +14,7 @@ addTodoForm.addEventListener("submit", function (e) {
   const project = document.querySelector(".active").dataset.project;
   const todo = new Todo(project, ...formDataAsArray);
   console.log(todo);
-  console.log(getList(todo));
+  console.log(getList(todo.project));
   renderTodo(getList(todo.project));
 });
 

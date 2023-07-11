@@ -1,5 +1,11 @@
 //Show/Hide form
-import { addToList, getList, removeTodo, removeProject } from "./todo.js";
+import {
+  addToList,
+  getList,
+  removeTodo,
+  removeProject,
+  addProject,
+} from "./todo.js";
 import { getFormData } from "./dataManipulation";
 import format from "date-fns/format";
 
@@ -56,6 +62,7 @@ saveNewProjectButton.addEventListener("click", () => {
     projectsContainer.appendChild(newProjectButton);
     updateProjectButtons();
     closeProjectForm();
+    addProject(value);
   } else {
     displayWarningPopup("Project name can't be empty");
   }

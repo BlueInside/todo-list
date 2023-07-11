@@ -1,8 +1,13 @@
 import format from "date-fns/format";
 // if project is in localStorage load it form there
 const projects = localStorage.getItem("projects")
-  ? JSON.parse(localStorage("projects"))
+  ? JSON.parse(localStorage.getItem("projects"))
   : {};
+
+const checkProjectsBtn = document.getElementById("checkProjects");
+checkProjectsBtn.addEventListener("click", () => {
+  console.log(getProjects());
+});
 function Todo(project, title, description, dueDate, priority) {
   const todo = {
     project,
@@ -27,7 +32,7 @@ function addToList(todo) {
 
 function getList(project) {
   if (!(project in projects)) {
-    projects[project] = [];
+    return [];
   }
   return projects[project];
 }
@@ -37,12 +42,24 @@ function removeProject(project) {
     delete projects[project];
   }
 }
+function getProjects() {
+  return projects;
+}
 function removeTodo(todo) {
   const projectArray = projects[todo.project];
   if (projectArray) {
     projects[todo.project] = projectArray.filter((t) => t.id !== todo.id);
   }
 }
-
+function addProject(project) {
+  projects[project] = [];
+}
 export default Todo;
-export { addToList, getList, removeTodo, removeProject };
+export {
+  addToList,
+  getList,
+  removeTodo,
+  removeProject,
+  getProjects,
+  addProject,
+};
