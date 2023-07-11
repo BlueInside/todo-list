@@ -33,8 +33,9 @@ p {
   flex-direction: column;
   min-height: 56vh;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
+
 .active {
   background-color: #6d3887a8;
 }
