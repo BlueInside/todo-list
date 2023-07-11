@@ -305,15 +305,14 @@ const dropdownContent = document.getElementById("dropdownContent");
 
 dropdownButton.addEventListener("click", function () {
   dropdownContent.classList.toggle("show");
-  // dropdownContent.classList.add("animate");
-  dropdownButton.classList.add("hidden");
+  dropdownButton.classList.remove("show");
 });
 
 // Close the dropdown menu if the user clicks outside of it
 window.addEventListener("click", function (event) {
   if (!event.target.matches(".round-button")) {
     dropdownContent.classList.remove("show");
-    dropdownButton.classList.remove("hidden");
+    dropdownButton.classList.add("show");
   }
 });
 
