@@ -3,6 +3,9 @@ body {
   background-color: #f7f7f7;
   text-align: center;
   padding: 20px;
+  background-image: url("../assets/images/todoBgImg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 h1 {
   color: #333;
@@ -23,6 +26,7 @@ p {
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
+  opacity: 0.95;
 }
 .container-main-text {
   display: flex;
@@ -115,7 +119,7 @@ select {
 }
 .todoButtons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 5px;
 }
 
@@ -223,15 +227,15 @@ span {
   position: relative;
   display: inline-block;
 }
-.round-button {
+/* .round-button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #333;
+  background-color: #a026bdbd;
   border: none;
   outline: none;
   cursor: pointer;
-}
+} */
 
 .dropdown-content {
   display: none;
@@ -265,7 +269,7 @@ span {
   bottom: 12vh;
   height: 70px;
   border-radius: 50%;
-  background-color: blue;
+  background-color: #a026bdbd;
   border: none;
   outline: none;
   cursor: pointer;
@@ -297,11 +301,14 @@ span {
   opacity: 1;
 }
 .hidden {
-  visibility: hidden;
+  display: none;
   transition: visibility 0s, opacity 0.5s linear;
   opacity: 0;
 }
-
+#dropdownButton {
+  font-size: 50px;
+  font-weight: 900;
+}
 /* .round-button {
   width: 70px;
   right: 9vw;

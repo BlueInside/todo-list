@@ -71,3 +71,14 @@ span {
 .round-button .other-buttons {
   opacity: 1;
 }
+.container {
+  max-width: 1300px;
+  min-width: fit-content;
+  margin: 0 auto;
+  min-height: 85vh;
+  max-height: fit-content;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  opacity: 0.95;
+}
