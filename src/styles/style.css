@@ -185,12 +185,3 @@ span {
 .popup-buttons button:hover {
   background-color: #eaeaea;
 }
-/* .wrapper {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  grid-template-rows: 50px 1fr;
-}
-.header {
-  border: 1px solid red;
-  grid-column: 1/3;
-} */
