@@ -12,6 +12,13 @@ h1 {
   font-size: 32px;
   margin-bottom: 20px;
 }
+.project-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
 p {
   color: #666;
   font-size: 18px;
@@ -304,10 +311,18 @@ span {
   /* Styles for tablets and larger screens */
   .container {
     min-height: 85vh;
-
     background-color: #fff;
     border-radius: 8px;
     opacity: 0.95;
+  }
+  input {
+    height: 50px;
+    width: 100%;
+  }
+  fieldset {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
   }
   #display {
     display: grid;
@@ -349,5 +364,9 @@ span {
     padding: 20px;
     border-radius: 5px;
     width: 40vh;
+  }
+  .tab-button {
+    height: 5vh;
+    width: 15vw;
   }
 }
